@@ -54,6 +54,7 @@ The operation scenario is configured by setting the values in the appropriate re
 ### Example
 
 The simplest use case is the end-to-end transmission of the signal from the input to the output. This mapping looks like a ladder in bitwise form.
+
 ![bit_ladder](docs/bit_ladder.png)
 
 > [!TIP]
@@ -75,7 +76,7 @@ In bitwise representation, it looks like 1111_1111. We read it as follows: Analo
 The register contains 16 bits. In the range of 10-17, the highest byte reflects the effect of the input on the zone processor as a sensor. The sensor will turn on the light in the minimum glow mode. Imagine that we have a motion sensor in the entrance area connected to the 2nd input. Let's set the register value:
 ```
 it was
-11 = 1282 (0000_0000_0000_0010)
+11 = 2 (0000_0000_0000_0010)
 change to
 11 = 1282 (0000_0101_0000_0010)
                  ^ ^
@@ -113,7 +114,7 @@ We add a gesture (one of eight possible ones) and a scene.
                          ^       apply to processor
                        ^         no rotation
                     ^^^          Gesture::OneClick = 0
-		  ^^^^ ^^^^              map to scene 1
+          ^^^^ ^^^^              map to scene 1
 
 50 = 32896  (1000_0000_1000_0000)
              ^         ^
@@ -127,9 +128,9 @@ After that, inputs 3 and 4 activate scene 1 by clicking and apply the **Toggle**
 
 Register No. 0 is the control register. You can write the command number into it and if it is executed successfully, the register will take the value 1.
 
-All the settings above were performed with registers that are stored in RAM. To avoid losing the settings, you need to save the registers in the **eeprom**. This can be done by writing the value 734 to register No. 0. After that, when starting the arduino, the saved configuration will be automatically loaded. 
+All the settings above were performed with registers that are stored in RAM. To avoid losing the settings, you need to save the registers in the **eeprom**. This can be done by writing the value **734** to register No. 0. After that, when starting the arduino, the saved configuration will be automatically loaded. 
 
-By writing the value 2 to register No. 0, you can return the default settings.
+By writing the value **2** to register No. 0, you can return the default settings.
 
 ### Setup from the code
 
